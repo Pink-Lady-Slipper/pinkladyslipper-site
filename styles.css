@@ -279,6 +279,28 @@ a {
   max-width: 560px;
 }
 
+.contact-section {
+  padding-bottom: 60px;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact-logo {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 24px;
+  box-shadow: 0 0 24px rgba(91, 92, 255, 0.35);
+}
+
+.contact-container .section-subtitle {
+  max-width: none;
+}
+
 /* About */
 .about-grid {
   display: grid;
@@ -393,12 +415,13 @@ a {
 .contact-grid {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 24px;
 }
 
 .social-links {
   display: flex;
+  justify-content: center;
   gap: 24px;
   flex-wrap: wrap;
 }
