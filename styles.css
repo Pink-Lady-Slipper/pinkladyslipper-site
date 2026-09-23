@@ -410,13 +410,27 @@ a {
 /* Media */
 .media-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
 .media-item {
-  min-height: 220px;
+  aspect-ratio: 1 / 1;
   border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(123, 47, 252, 0.25);
+}
+
+.media-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.media-item:hover img {
+  transform: scale(1.06);
 }
 
 /* Contact */
@@ -564,5 +578,9 @@ a {
 
   .about-grid {
     grid-template-columns: 1fr;
+  }
+
+  .media-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
