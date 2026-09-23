@@ -20,7 +20,22 @@ them):
 |---|---|---|---|
 | **DEV** | Working environment (this checkout) | `shankardba/pinkladyslipper` (`origin` remote) | GitHub Pages: https://shankardba.github.io/pinkladyslipper/ |
 | **ACPT** | Acceptance/staging, owned by Eric (the band's guitarist) | `Pink-Lady-Slipper/pinkladyslipper-site` (`acpt` remote) | GitHub Pages: https://pink-lady-slipper.github.io/pinkladyslipper-site/ |
-| **PROD** | Production (not yet configured) | TBD | Cloudflare (future) |
+| **PROD** | Production — the public live site | Same repo as ACPT (`Pink-Lady-Slipper/pinkladyslipper-site`) | Cloudflare Workers (static assets), auto-deployed on every push to `main`: https://pinkladyslipper.net (also reachable at https://pinkladyslipper-site.baseball4537.workers.dev) |
+
+### PROD is auto-deployed from ACPT — there is no separate promotion step
+
+Unlike DEV → ACPT, **ACPT → PROD has no manual gate**. Cloudflare's Git
+integration (Workers & Pages project `pinkladyslipper-site`, connected as the
+`Pink-Lady-Slipper` GitHub account) rebuilds and deploys automatically on
+every push to `acpt`'s `main` branch — no build command, static assets served
+directly (Cloudflare auto-generated the Worker/assets config; there is no
+`wrangler.toml` committed in this repo). In effect, **ACPT *is* production**:
+anything pushed there is live on https://pinkladyslipper.net within moments.
+
+This means the only intentional checkpoint left in the whole pipeline is
+**DEV → ACPT** (`git push acpt main`, manual/on request as below). Once
+something is promoted to ACPT, it is public. Treat "promote to ACPT" as the
+real go-live decision from here on.
 
 ### Access to ACPT (Pink-Lady-Slipper account)
 
