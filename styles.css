@@ -199,17 +199,34 @@ a {
   text-align: center;
   padding: 100px 24px 60px;
   overflow: hidden;
+  background: var(--color-bg);
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   background:
-    radial-gradient(circle at 20% 15%, rgba(246, 2, 188, 0.35), transparent 50%),
-    radial-gradient(circle at 80% 85%, rgba(61, 43, 255, 0.35), transparent 55%),
-    radial-gradient(circle at 50% 50%, rgba(2, 213, 101, 0.15), transparent 60%),
-    var(--color-bg);
+    radial-gradient(circle at 20% 15%, rgba(246, 2, 188, 0.45), transparent 50%),
+    radial-gradient(circle at 80% 85%, rgba(61, 43, 255, 0.45), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(2, 213, 101, 0.18), transparent 60%),
+    rgba(6, 4, 15, 0.55);
 }
 
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 1;
   background-image:
     radial-gradient(1.5px 1.5px at 10% 20%, var(--color-cream), transparent),
     radial-gradient(1.5px 1.5px at 25% 60%, var(--color-cream), transparent),
@@ -226,7 +243,7 @@ a {
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-logo {
