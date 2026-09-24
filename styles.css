@@ -266,12 +266,6 @@ a {
   line-height: 1.15;
 }
 
-.tagline {
-  margin-top: 20px;
-  font-size: clamp(1rem, 2.5vw, 1.3rem);
-  color: var(--color-text-muted);
-}
-
 .hero-buttons {
   margin-top: 36px;
   display: flex;
