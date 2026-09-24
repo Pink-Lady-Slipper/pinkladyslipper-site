@@ -506,8 +506,12 @@ a {
 
 /* Page header (secondary pages) */
 .page-header {
-  padding: 140px 0 60px;
+  padding: 140px 0 30px;
   text-align: center;
+}
+
+.page-header + .section {
+  padding-top: 30px;
 }
 
 .page-title {
