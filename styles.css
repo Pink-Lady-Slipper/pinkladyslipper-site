@@ -544,65 +544,6 @@ a {
   height: 26px;
 }
 
-/* Mailing list join */
-.join-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  width: 100%;
-}
-
-.join-block[hidden],
-.join-form[hidden] {
-  display: none;
-}
-
-.join-pill {
-  padding: 7px 22px;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  background: transparent;
-  color: var(--color-primary);
-  border-color: var(--color-primary);
-  cursor: pointer;
-}
-
-.join-pill:hover,
-.join-pill.is-open {
-  background: var(--color-primary);
-  color: #10061a;
-}
-
-.join-form {
-  --ml-accent: var(--color-primary);
-  --ml-radius: 999px;
-  width: 100%;
-  max-width: 400px;
-  font-size: 0.9rem;
-}
-
-.join-form .ml-heading {
-  color: var(--color-text-muted);
-  font-weight: 500;
-}
-
-.join-form input[type="email"] {
-  padding: 9px 16px;
-  border-color: rgba(184, 168, 214, 0.45);
-}
-
-.join-form input[type="email"]:focus {
-  outline: none;
-  border-color: var(--color-primary);
-}
-
-.join-form button {
-  padding: 9px 18px;
-  font-family: var(--font-display);
-}
-
 /* Page header (secondary pages) */
 .page-header {
   padding: 140px 0 30px;
