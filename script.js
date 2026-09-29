@@ -17,6 +17,39 @@ navLinks.querySelectorAll('a').forEach((link) => {
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Mailing list signup. Hosts without a backend (including PROD, for now) keep the Join pill hidden.
+const joinBlock = document.getElementById('joinBlock');
+
+if (joinBlock) {
+  const TEST_LIST_ENDPOINT = 'https://pls-list-test.baseball4537.workers.dev/api/list';
+  const listEndpoints = {
+    localhost: TEST_LIST_ENDPOINT,
+    '127.0.0.1': TEST_LIST_ENDPOINT,
+    'shankardba.github.io': TEST_LIST_ENDPOINT,
+  };
+  const listEndpoint = listEndpoints[location.hostname];
+
+  if (listEndpoint) {
+    const joinToggle = document.getElementById('joinToggle');
+    const joinForm = document.getElementById('joinForm');
+
+    // Must run before the deferred widget.js renders the form.
+    joinForm.setAttribute('data-endpoint', listEndpoint);
+    joinBlock.hidden = false;
+
+    joinToggle.addEventListener('click', () => {
+      const opening = joinForm.hidden;
+      joinForm.hidden = !opening;
+      joinToggle.setAttribute('aria-expanded', String(opening));
+      joinToggle.classList.toggle('is-open', opening);
+      if (opening) {
+        const emailInput = joinForm.querySelector('input[type="email"]');
+        if (emailInput) emailInput.focus();
+      }
+    });
+  }
+}
+
 // Media lightbox
 const lightbox = document.getElementById('lightbox');
 

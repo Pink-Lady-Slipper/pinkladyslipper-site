@@ -1,0 +1,56 @@
+/* Themed entirely through custom properties so each site's copy of this file
+   (or the adapter route serving it) never needs per-site edits — see README. */
+[data-mailing-list] {
+  --ml-accent: #6d5efc;
+  --ml-fg: currentColor;
+  --ml-radius: 10px;
+  --ml-font: inherit;
+  font-family: var(--ml-font);
+  max-width: 420px;
+}
+[data-mailing-list] .ml-heading {
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+[data-mailing-list] .ml-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+[data-mailing-list] input[type="email"],
+[data-mailing-list] input[type="text"] {
+  flex: 1 1 180px;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: var(--ml-radius);
+  border: 1px solid rgba(128, 128, 128, 0.4);
+  background: transparent;
+  color: var(--ml-fg);
+  font: inherit;
+}
+[data-mailing-list] button {
+  padding: 10px 18px;
+  border-radius: var(--ml-radius);
+  border: none;
+  background: var(--ml-accent);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+[data-mailing-list] button:disabled { opacity: 0.6; cursor: default; }
+[data-mailing-list] .ml-status {
+  margin-top: 8px;
+  font-size: 0.9em;
+  min-height: 1.2em;
+}
+[data-mailing-list] .ml-status[data-state="error"] { color: #d5443a; }
+[data-mailing-list] .ml-status[data-state="ok"] { color: var(--ml-accent); }
+[data-mailing-list] .ml-honeypot {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

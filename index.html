@@ -17,7 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Bungee&family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="mailing-list/widget.css" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="mailing-list/widget.js" defer></script>
 </head>
 <body>
 
@@ -132,6 +134,10 @@
               </g>
             </svg>
           </a>
+        </div>
+        <div class="join-block" id="joinBlock" hidden>
+          <button type="button" class="btn join-pill" id="joinToggle" aria-expanded="false" aria-controls="joinForm">Join</button>
+          <div class="join-form" id="joinForm" data-mailing-list data-heading="Get show news by email" hidden></div>
         </div>
         <img src="images/logo.webp" alt="Pink Lady Slipper" class="badge-mark contact-logo" />
       </div>
