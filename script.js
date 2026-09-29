@@ -1,17 +1,27 @@
-// Mobile nav toggle
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.getElementById('navLinks');
+// Top-right menu (Media / Music / Lyrics)
+const menuToggle = document.getElementById('menuToggle');
+const menuPanel = document.getElementById('menuPanel');
 
-navToggle.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', String(isOpen));
+const setMenuOpen = (open) => {
+  menuPanel.hidden = !open;
+  menuToggle.setAttribute('aria-expanded', String(open));
+  menuToggle.classList.toggle('is-open', open);
+};
+
+menuToggle.addEventListener('click', (event) => {
+  event.stopPropagation();
+  setMenuOpen(menuPanel.hidden);
 });
 
-navLinks.querySelectorAll('a').forEach((link) => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  });
+document.addEventListener('click', (event) => {
+  if (!menuPanel.hidden && !menuPanel.contains(event.target)) setMenuOpen(false);
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !menuPanel.hidden) {
+    setMenuOpen(false);
+    menuToggle.focus();
+  }
 });
 
 // Footer year
