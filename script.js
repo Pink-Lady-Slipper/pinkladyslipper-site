@@ -17,6 +17,10 @@ document.addEventListener('click', (event) => {
   if (!menuPanel.hidden && !menuPanel.contains(event.target)) setMenuOpen(false);
 });
 
+menuPanel.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => setMenuOpen(false));
+});
+
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && !menuPanel.hidden) {
     setMenuOpen(false);
