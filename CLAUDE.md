@@ -58,5 +58,3 @@ real go-live decision from here on.
 Promotion from DEV to ACPT is **manual only, on explicit request** — never
 auto-push to the `acpt` remote as a side effect of a DEV commit/push. When
 asked to promote: `git push acpt main`.
-
-PROD/Cloudflare is out of scope until explicitly picked up later.
