@@ -31,6 +31,82 @@ document.addEventListener('keydown', (event) => {
 // Footer year
 document.getElementById('year').textContent = new Date().getFullYear();
 
+// Mailing list backend, picked by hostname. Hosts without one (including
+// PROD, for now) keep the Join pill hidden and the unsubscribe form disabled.
+const TEST_LIST_ENDPOINT = 'https://pls-list-test.baseball4537.workers.dev/api/list';
+const listEndpoint = {
+  localhost: TEST_LIST_ENDPOINT,
+  '127.0.0.1': TEST_LIST_ENDPOINT,
+  'shankardba.github.io': TEST_LIST_ENDPOINT,
+}[location.hostname];
+
+// Mailing list signup
+const joinBlock = document.getElementById('joinBlock');
+
+if (joinBlock) {
+  if (listEndpoint) {
+    const joinToggle = document.getElementById('joinToggle');
+    const joinForm = document.getElementById('joinForm');
+
+    // Must run before the deferred widget.js renders the form.
+    joinForm.setAttribute('data-endpoint', listEndpoint);
+    joinBlock.hidden = false;
+
+    joinToggle.addEventListener('click', () => {
+      const opening = joinForm.hidden;
+      joinForm.hidden = !opening;
+      joinToggle.setAttribute('aria-expanded', String(opening));
+      joinToggle.classList.toggle('is-open', opening);
+      if (opening) {
+        const emailInput = joinForm.querySelector('input[type="email"]');
+        if (emailInput) emailInput.focus();
+      }
+    });
+  }
+}
+
+// Self-serve unsubscribe (unsubscribe.html)
+const unsubForm = document.getElementById('unsubForm');
+
+if (unsubForm) {
+  const unsubStatus = document.getElementById('unsubStatus');
+  const unsubButton = unsubForm.querySelector('button');
+  const setUnsubStatus = (message, state) => {
+    unsubStatus.textContent = message;
+    if (state) unsubStatus.setAttribute('data-state', state);
+    else unsubStatus.removeAttribute('data-state');
+  };
+
+  if (!listEndpoint) {
+    unsubButton.disabled = true;
+    setUnsubStatus('The mailing list isn’t open yet.', 'error');
+  }
+
+  unsubForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    if (!listEndpoint) return;
+    unsubButton.disabled = true;
+    setUnsubStatus('Removing…', null);
+
+    fetch(listEndpoint + '/unsubscribe', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: unsubForm.email.value }),
+    })
+      .then((res) => res.json().then((data) => ({ ok: res.ok, data })))
+      .then(({ ok, data }) => {
+        if (ok) {
+          setUnsubStatus('You’ve been removed from the mailing list.', 'ok');
+          unsubForm.reset();
+        } else {
+          setUnsubStatus(data && data.error ? data.error : 'Something went wrong.', 'error');
+        }
+      })
+      .catch(() => setUnsubStatus('Network error — please try again.', 'error'))
+      .then(() => { unsubButton.disabled = false; });
+  });
+}
+
 // Media lightbox
 const lightbox = document.getElementById('lightbox');
 

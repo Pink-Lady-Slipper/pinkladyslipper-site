@@ -596,6 +596,121 @@ a {
   height: 26px;
 }
 
+/* Mailing list join */
+.join-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.join-block[hidden],
+.join-form[hidden] {
+  display: none;
+}
+
+.join-pill {
+  padding: 7px 22px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.join-pill:hover,
+.join-pill.is-open {
+  background: var(--color-primary);
+  color: #10061a;
+}
+
+.join-form {
+  --ml-accent: var(--color-primary);
+  --ml-radius: 999px;
+  width: 100%;
+  max-width: 400px;
+  font-size: 0.9rem;
+}
+
+.join-form .ml-heading {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.join-form input[type="email"] {
+  padding: 9px 16px;
+  border-color: rgba(184, 168, 214, 0.45);
+}
+
+.join-form input[type="email"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.join-form button {
+  padding: 9px 18px;
+  font-family: var(--font-display);
+}
+
+/* Unsubscribe page */
+.unsub-form {
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.unsub-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.unsub-row input[type="email"] {
+  flex: 1 1 200px;
+  min-width: 0;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(184, 168, 214, 0.45);
+  background: transparent;
+  color: var(--color-text);
+  font: inherit;
+}
+
+.unsub-row input[type="email"]:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.unsub-row button {
+  flex-shrink: 0;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-primary);
+  color: #10061a;
+  font-family: var(--font-display);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.unsub-row button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.unsub-status {
+  margin-top: 12px;
+  min-height: 1.4em;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.unsub-status[data-state="ok"] { color: var(--color-secondary); }
+.unsub-status[data-state="error"] { color: #ff7a8a; }
+
 /* Page header (secondary pages) */
 .page-header {
   padding: 120px 0 30px;
